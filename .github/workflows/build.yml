@@ -6,11 +6,15 @@ on:
     paths-ignore:
       - '*.md'
       - 'Dockerfile'
+      - '*.png'
+      - '*.jpg'
   pull_request:
     branches: ["master"]
     paths-ignore:
       - '*.md'
       - 'Dockerfile'
+      - '*.png'
+      - '*.jpg'
 
 jobs:
   build_android:
