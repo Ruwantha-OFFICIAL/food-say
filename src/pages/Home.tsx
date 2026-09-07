@@ -36,7 +36,7 @@ import './Home.css';
 export enum AppError {
   NETWORK_ERROR = "Network connection failed. Please check your internet connection.",
   NOT_FOUND = "Results is not found",
-  NOT_SAVE = "Not favorite food saved"
+  NOT_SAVE = "Not favorite food saved",
   NONE = ""
 }
 
@@ -182,7 +182,7 @@ function Home() {
             )}
           </IonSegmentContent>
           <IonSegmentContent id="saved">
-            <Seachscreen items={Save} onUpdate={refreshData} />
+            {Save && Save.length > 0 ? (<Seachscreen items={Save} onUpdate={refreshData} />) : (<Error message={AppError.NOT_SAVE} />) }
           </IonSegmentContent>
           <IonSegmentContent id="about">
             <About />

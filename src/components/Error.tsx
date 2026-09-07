@@ -1,9 +1,10 @@
 import React from 'react';
 import { IonIcon } from '@ionic/react';
-import { 
-  cloudOfflineOutline, 
-  searchOutline, 
-  alertCircleOutline 
+import {
+  cloudOfflineOutline,
+  searchOutline,
+  alertCircleOutline,
+  folderOpenOutline
 } from 'ionicons/icons';
 import './Error.css';
 
@@ -17,6 +18,8 @@ function Error({ message }: Props) {
       return cloudOfflineOutline;
     } else if (message.toLowerCase().includes('not found') || message.toLowerCase().includes('results')) {
       return searchOutline;
+    } else if (message.toLowerCase().includes('not favorite') || message.toLowerCase().includes("saved")) {
+      return folderOpenOutline
     }
     return alertCircleOutline;
   };
