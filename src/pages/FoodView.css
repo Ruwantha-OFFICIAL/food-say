@@ -1,0 +1,110 @@
+/* Conflict resolved: Removed duplicate ion-toolbar declaration since it's handled globally in variable.css, keeping component-specific properties here if needed */
+.food-view-background {
+  --background: var(--bg-color);
+}
+
+.food-image-container {
+  width: 100%;
+  height: 280px;
+  background: var(--secondary-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.food-main-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skeleton-img {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  --background: var(--secondary-color);
+  --background-rgb: var(--secondary-color);
+}
+
+.food-view-content {
+  background: var(--bg-color);
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  margin-top: -24px;
+  position: relative;
+  z-index: 10;
+  padding: 24px 20px 40px 20px;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.04);
+}
+
+.food-header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.title-and-category h2 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 4px 0 0 0;
+}
+
+.category-chip {
+  margin: 0 0 6px 0;
+  background: var(--secondary-color);
+  color: var(--text-muted);
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.save-icon-btn {
+  font-size: 26px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.section-box {
+  margin-top: 24px;
+  background: var(--card-bg);
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid var(--secondary-color);
+}
+
+.section-box h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+.ingredients-list {
+  background: transparent;
+  padding: 0 !important;
+}
+
+.ingredient-item {
+  --background: transparent;
+  --padding-start: 0;
+  --padding-end: 0;
+  min-height: 32px;
+  color: var(--text-main);
+  background: var(--card-bg);
+}
+
+.bullet-point {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.instructions-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text-main);
+  white-space: pre-line;
+  margin: 0;
+}

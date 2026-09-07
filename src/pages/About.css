@@ -1,0 +1,118 @@
+.about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100%;
+  padding: 16px;
+}
+
+.about-card {
+  background-color: var(--card-bg); /* Replaced hardcoded #FFFFFF with variable */
+  border: 1px solid var(--secondary-color);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  margin: auto;
+}
+
+.about-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 8px;
+}
+
+.about-avatar {
+  width: 75px;
+  height: 75px;
+  margin-bottom: 12px;
+  border: 3px solid var(--primary-color);
+  box-shadow: 0 4px 12px rgba(249, 190, 8, 0.25);
+}
+
+.about-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.about-subtitle {
+  font-size: 13px;
+  color: var(--text-subdued); /* Replaced hardcoded #888888 with variable */
+  margin-top: 4px;
+}
+
+.about-content {
+  text-align: center;
+  padding-top: 0;
+}
+
+.about-description {
+  font-size: 14px;
+  color: var(--text-main); /* Replaced hardcoded #444444 with variable for consistency */
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.repo-link {
+  color: var(--primary-color);
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 4px;
+  text-decoration: underline;
+}
+
+.developer-section {
+  border-top: 1px solid var(--secondary-color);
+  padding-top: 16px;
+}
+
+.dev-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 14px;
+}
+
+.social-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.social-btn {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: none;
+  border-radius: 12px;
+  flex: 1;
+  height: 42px;
+  --box-shadow: none;
+}
+
+.github-btn {
+  --background: #24292e;
+  --color: #ffffff;
+}
+
+.whatsapp-btn {
+  --background: #25d366;
+  --color: #ffffff;
+}
+
+.chat-btn {
+  width: 100%;
+  --border-color: var(--primary-color);
+  --color: var(--text-main);
+  --background-hover: rgba(249, 190, 8, 0.1);
+  margin-top: 4px;
+  border-radius: 12px;
+  height: 42px;
+}

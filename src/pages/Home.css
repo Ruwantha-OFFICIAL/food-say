@@ -1,0 +1,14 @@
+.title {
+  font-family: 'greatVibes';
+  color: #fff;
+  font-size: 30px;
+}
+
+ion-searchbar.seach-box {
+  --border-radius: 20px;
+}
+
+ion-segment-content {
+  display: flex;
+  padding: 8px;
+}

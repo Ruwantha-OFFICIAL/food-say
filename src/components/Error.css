@@ -1,0 +1,29 @@
+.erro-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #747474;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+
+.erro-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.erro-content h2 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+  color: #888888;
+}
+
+.erro-icon {
+  font-size: 48px;
+  color: #b5b5b5;
+}

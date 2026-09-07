@@ -1,0 +1,17 @@
+.loading-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.loading-bar-wrapper {
+  width: 60%;
+  text-align: center;
+}
+ion-progress-bar {
+  --background: var(--primary-color);
+  --progress-background: var(--secondary-color);
+}
