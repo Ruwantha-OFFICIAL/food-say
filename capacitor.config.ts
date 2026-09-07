@@ -4,6 +4,9 @@ const config: CapacitorConfig = {
   appId: 'com.foodsay.ruwantha',
   appName: 'food say',
   webDir: 'dist',
+  server:{
+    androidScheme: "https"
+  },
   plugins: {
     LocalNotifications: {
       smallIcon: "ic_stat_app_icon",

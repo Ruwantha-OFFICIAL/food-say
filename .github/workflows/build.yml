@@ -32,10 +32,9 @@ jobs:
 
       - name: Add Capacitor Android & Sync
         run: |
-          npm install @capacitor/assets --save-dev
-          npx capacitor-assets generate --android
-          npm install @capacitor/android
+          npm install @capacitor/android @capacitor/assets
           npx cap add android
+          npx capacitor-assets generate --android
           npx cap sync android
 
       - name: Setup Java ☕
