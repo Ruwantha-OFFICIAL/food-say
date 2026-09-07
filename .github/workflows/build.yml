@@ -32,10 +32,10 @@ jobs:
 
       - name: Add Capacitor Android & Sync
         run: |
+          npm install @capacitor/assets --save-dev
+          npx capacitor-assets generate --android
           npm install @capacitor/android
           npx cap add android
-          npm install @capacitor/assets --save-dev
-          npx capacitor-assets generate
           npx cap sync android
 
       - name: Setup Java ☕
@@ -61,6 +61,9 @@ jobs:
     permissions:
       contents: write
     steps:
+      - name: Chek Out Code
+        uses: action/checkout@v4
+        
       - name: Download Artifact File 🌐
         uses: actions/download-artifact@v8
         with:
