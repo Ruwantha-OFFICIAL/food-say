@@ -62,7 +62,7 @@ jobs:
       contents: write
     steps:
       - name: Chek Out Code
-        uses: action/checkout@v4
+        uses: actions/checkout@v4
         
       - name: Download Artifact File 🌐
         uses: actions/download-artifact@v8
