@@ -15,6 +15,7 @@ import {
   addNew,
   getAll
 } from '../hook/useStorag';
+import placeHolde from '../assets/comfort_food_placeholder.png'
 
 interface Props {
   food: FoodItem;
@@ -52,7 +53,7 @@ const Foodcard: React.FC<Props> = ({ food, onUpdate }) => {
         {/*background image*/}
         <div className="card-image-wrapper">
           <IonImg
-            src={food.image}
+            src={food.image || placeHolde}
             alt={food.name}
             className="card-img"
           />

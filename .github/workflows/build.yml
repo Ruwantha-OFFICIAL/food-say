@@ -36,7 +36,7 @@ jobs:
 
       - name: Add Capacitor Android & Sync
         run: |
-          npm install @capacitor/android @capacitor/assets
+          npm install @capacitor/assets
           npx cap add android
           npx capacitor-assets generate --android
           npx cap sync android
@@ -79,7 +79,7 @@ jobs:
       - name: Create Release 🦁
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: 1.0.0
+          tag_name: 1.0.1
           body_path: ./release.md
           files: release/*
         env:

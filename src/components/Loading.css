@@ -11,7 +11,8 @@
   width: 60%;
   text-align: center;
 }
-ion-progress-bar {
-  --background: var(--primary-color);
-  --progress-background: var(--secondary-color);
+ion-spinner {
+  --color: var(--text-muted);
+  width: 50px;
+  height: 50px;
 }

@@ -1,12 +1,11 @@
-import { IonProgressBar } from '@ionic/react';
+import { IonSpinner } from '@ionic/react';
 import './Loading.css';
 
 function Loading() {
   return (
     <div className="loading-container">
       <div className="loading-bar-wrapper">
-        <IonProgressBar type="indeterminate"/>
-        <p>Loading...</p>
+        <IonSpinner name="bubbles"/>
       </div>
     </div>
   );
