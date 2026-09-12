@@ -103,7 +103,7 @@ jobs:
       - name: Create Release 🦁
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: {{steps.get_v.outputs.version}}
+          tag_name: ${{ steps.get_v.outputs.version }}
           body_path: ./release.md
           files: release/*
         env:
