@@ -48,7 +48,9 @@ jobs:
 
 
       - name: Version Update 🔖
-        run: node ./bin/verstion_android.cjs
+        run: |
+          cd bin
+          node verstion_android.cjs
 
       
       - name: Setup Java ☕
