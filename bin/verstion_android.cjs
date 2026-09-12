@@ -10,7 +10,7 @@ async function versionControll() {
     
     build = build.replace("1", vc)
     build = build.replace("1.0", v)
-    const fileHadler = await fs.open("../android/app/build.gradle", "wx");
+    const fileHadler = await fs.open("../android/app/build.gradle", "w");
 
     await fileHadler.write(build)
     console.log("VERSION=",v)
