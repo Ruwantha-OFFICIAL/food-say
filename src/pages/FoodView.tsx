@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   IonPage,
   IonToolbar,
@@ -30,39 +30,44 @@ import './FoodView.css';
 import placeHolde from '../assets/comfort_food_placeholder.png';
 
 function FoodView() {
-  let { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: string }>();
   const [data, setData] = useState<FoodItem | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [isSaved, setIsSaved] = useState<boolean>(false);
 
-  const food = async () => {
+  const food = useCallback(async () => {
     try {
-      if(!id) return;
-      let [_, item] = await useFindId(id);
-      const fetchedData = item[0];
-      setData(fetchedData);
+      if (!id) return;
+      const [, item] = await useFindId(id);
+      const fetchedData = item?.[0];
+      setData(fetchedData || null);
 
       if (fetchedData) {
-        let allItem: FoodItem[] = getAll() || [];
-        let exists = allItem.some((value) => value.id === fetchedData.id);
+        const allItem: FoodItem[] = getAll() || [];
+        const exists = allItem.some((value) => value.id === fetchedData.id);
         setIsSaved(exists);
       }
 
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    food();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+  }, [food]);
 
   const saveItem = (s: FoodItem | null): void => {
     if (!s) return;
-    let allItem: FoodItem[] = getAll() || [];
-    let exists = allItem.some((value) => value.id === s.id);
+    const allItem: FoodItem[] = getAll() || [];
+    const exists = allItem.some((value) => value.id === s.id);
     setIsSaved(!exists);
 
     if (exists) {
-      let filtered = allItem.filter((v) => v.id !== s.id);
+      const filtered = allItem.filter((v) => v.id !== s.id);
       localStorage.setItem("Saved", JSON.stringify(filtered));
       s.save = false;
     } else {
@@ -70,10 +75,6 @@ function FoodView() {
       addNew(s);
     }
   };
-
-  useEffect(() => {
-    food();
-  }, [id]);
 
   return (
     <IonPage>
@@ -106,7 +107,7 @@ function FoodView() {
             <div className="title-and-category">
               {loading ? (
                 <>
-                  <IonSkeletonText animated style={{ width: '30%', height: '20px', borderRadius: '4px', marginBottom: '8px' }} />
+                  <IonSkeletonText animated style={{ width: '200px', height: '20px', borderRadius: '4px', marginBottom: '8px' }} />
                   <IonSkeletonText animated style={{ width: '70%', height: '32px', borderRadius: '4px' }} />
                 </>
               ) : (

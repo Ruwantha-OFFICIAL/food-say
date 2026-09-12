@@ -12,7 +12,7 @@ import {
   IonSearchbar
 } from '@ionic/react';
 import { debounce } from 'lodash';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 import {
   usePopuler,
@@ -24,7 +24,8 @@ import {
 } from '../hook/useStorag';
 import {
   LocalNotification
-} from '../utility/notification'
+} from '../utility/notification';
+import { AppError } from '../types/errors';
 
 import Seachscreen from '../components/Seachscreen';
 import Loading from '../components/Loading';
@@ -32,39 +33,19 @@ import Error from '../components/Error';
 import About from './About';
 import './Home.css';
 
-// 1. Error Enum
-export enum AppError {
-  NETWORK_ERROR = "Network connection failed. Please check your internet connection.",
-  NOT_FOUND = "Results is not found",
-  NOT_SAVE = "Not favorite food saved",
-  NONE = ""
-}
-
 function Home() {
-  /*
-  * Data,Save is page Mani
-  * Data has chenge seach & page Loading
-  * Save Has chenge addSave & page Loading
-  */
-  const [ Data, setData ] = useState<FoodItem[]>([]);
-  const [ SearchVal, setSearchVal ] = useState('');
-  const [ Save, setSave ] = useState<FoodItem[]>([]);
-  const [ activeTab, setActiveTab ] = useState<string>('seach');
-  const [ IsLoading, setIsLoading ] = useState(false);
-  const [ currentError, setCurrentError ] = useState<AppError>(AppError.NONE);
+  const [Data, setData] = useState<FoodItem[]>([]);
+  const [SearchVal, setSearchVal] = useState('');
+  const [Save, setSave] = useState<FoodItem[]>([]);
+  const [activeTab, setActiveTab] = useState<string>('seach');
+  const [IsLoading, setIsLoading] = useState(false);
+  const [currentError, setCurrentError] = useState<AppError>(AppError.NONE);
 
-  const refreshData = () => {
+  const refreshData = useCallback(() => {
     setSave(getAll());
-  };
-
-  useEffect(() => {
-    findPop();
-    refreshData();
-    LocalNotification();
   }, []);
 
-  let findPop = async () => {
-    //chek internet conctions
+  const findPop = useCallback(async () => {
     if (!navigator.onLine) {
       setCurrentError(AppError.NETWORK_ERROR);
       setData([]);
@@ -75,42 +56,7 @@ function Home() {
       setIsLoading(true);
       setCurrentError(AppError.NONE);
 
-      let [ success, items ] = await usePopuler();
-
-      if (!success || items.length === 0) {
-        setCurrentError(AppError.NOT_FOUND);
-        setData([]);
-      } else {
-        setData(items);
-      }
-      refreshData();
-    } catch (error: any) {
-      console.error("Field :", error.message);
-      setCurrentError(AppError.NETWORK_ERROR);
-      setData([]);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  //Search handeler debounce 1.6s
-  let handleSearch = debounce(async (val: string) => {
-    setSearchVal(val);
-    if (!val.trim()) {
-      findPop();
-      return;
-    }
-
-    if (!navigator.onLine) {
-      setCurrentError(AppError.NETWORK_ERROR);
-      setData([]);
-      return;
-    }
-
-    try {
-      setIsLoading(true);
-      setCurrentError(AppError.NONE);
-
-      let [ success, items ] = await useSearch(val);
+      const [success, items] = await usePopuler();
 
       if (!success || items.length === 0) {
         setCurrentError(AppError.NOT_FOUND);
@@ -120,12 +66,58 @@ function Home() {
       }
       refreshData();
     } catch (error) {
+      console.error("Error:", error);
       setCurrentError(AppError.NETWORK_ERROR);
       setData([]);
     } finally {
       setIsLoading(false);
     }
-  }, 1600);
+  }, [refreshData]);
+
+  useEffect(() => {
+    findPop();
+    LocalNotification();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+  }, [findPop]);
+
+  // Search handler debounce 1.6s
+  const handleSearch = useCallback(
+    debounce(async (val: string) => {
+      setSearchVal(val);
+      if (!val.trim()) {
+        findPop();
+        return;
+      }
+
+      if (!navigator.onLine) {
+        setCurrentError(AppError.NETWORK_ERROR);
+        setData([]);
+        return;
+      }
+
+      try {
+        setIsLoading(true);
+        setCurrentError(AppError.NONE);
+
+        const [success, items] = await useSearch(val);
+
+        if (!success || items.length === 0) {
+          setCurrentError(AppError.NOT_FOUND);
+          setData([]);
+        } else {
+          setData(items);
+        }
+        refreshData();
+      } catch (error) {
+        console.error("Error:", error);
+        setCurrentError(AppError.NETWORK_ERROR);
+        setData([]);
+      } finally {
+        setIsLoading(false);
+      }
+    }, 1600),
+    [findPop, refreshData]
+  );
 
   return (
     <IonPage>

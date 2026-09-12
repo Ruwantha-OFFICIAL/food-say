@@ -41,6 +41,11 @@ jobs:
           npx capacitor-assets generate --android
           npx cap sync android
 
+      - name: Copy Files ⚙️
+        run: |
+          cp ./src/assets/release_key.jks ./android/app
+          cp .src/assets/notification_image.png ./android/app/src/main/res/drawable
+
       - name: Setup Java ☕
         uses: actions/setup-java@v6
         with:

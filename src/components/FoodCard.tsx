@@ -30,12 +30,12 @@ const Foodcard: React.FC<Props> = ({ food, onUpdate }) => {
   );
 
   const saveItem = (s: FoodItem): void => {
-    let allItem: FoodItem[] = getAll();
-    let exists = allItem.some((value) => value.id === s.id);
+    const allItem: FoodItem[] = getAll();
+    const exists = allItem.some((value) => value.id === s.id);
     setIsSaved(!exists);
 
     if (exists) {
-      let filtered = allItem.filter((v) => v.id !== s.id);
+      const filtered = allItem.filter((v) => v.id !== s.id);
       localStorage.setItem("Saved", JSON.stringify(filtered));
       s.save = false;
     } else {
