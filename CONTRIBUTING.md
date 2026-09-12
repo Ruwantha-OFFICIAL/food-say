@@ -5,12 +5,16 @@
 - code samll
 - update code securitys
 
-# Pull request checklist
+## Pull request checklist
 
 - write changeslog file
 - you cheges write to  *release.md* file
+- cheges *package.json* "versioncode" and "version"
+- Follow the existing coding style in the area you're touching
+- update workflow(build.yml) File 'tag_name'
 
-  ```txt
+### release tempte
+```txt
   Fechers
   ...
   Fix 🐞
@@ -18,8 +22,6 @@
   Chege
   ....
   ```
-- Follow the existing coding style in the area you're touching
-- update workflow(build.yml) File 'tag_name'
 
 ## Licence and provenance
 

@@ -21,10 +21,26 @@ const config: CapacitorConfig = {
   plugins: {
     LocalNotifications: {
       smallIcon: "notification_image",
-      iconColor: "#EFD30B",
+      iconColor: "#F9BE08",
       sound: "beep.wav",
       presentationOptions: [ "badge", "sound", "banner", "list" ]
-    }
+    },
+    SplashScreen: {
+      launchShowDuration: 3000,
+      launchAutoHide: true,
+      launchFadeOutDuration: 3000,
+      backgroundColor: "#ffffffff",
+      androidSplashResourceName: "splash",
+      androidScaleType: "FIT_XY",
+      showSpinner: true,
+      androidSpinnerStyle: "large",
+      iosSpinnerStyle: "small",
+      spinnerColor: "#999999",
+      splashFullScreen: true,
+      splashImmersive: true,
+      layoutName: "launch_screen",
+      useDialog: true,
+    },
   }
 };
 

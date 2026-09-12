@@ -1,4 +1,7 @@
 # welcome Food say App 
 
-## Fix 
-- try fix icon issus
+## add
+- versionControll
+
+## fix 🐞
+- fix app version 

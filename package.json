@@ -1,7 +1,8 @@
 {
   "name": "ionic-app-base",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.2-beta",
+  "versioncode": "2",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,6 +16,7 @@
     "@capacitor/browser": "^8.0.4",
     "@capacitor/cli": "8.5.0",
     "@capacitor/core": "8.5.0",
+    "@capacitor/ios": "^8.5.2",
     "@capacitor/local-notifications": "^8.3.1",
     "@ionic/react": "^9.0.0",
     "@ionic/react-router": "^9.0.0",

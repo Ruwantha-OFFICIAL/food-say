@@ -11,3 +11,11 @@
 ### update
 - update configs
 - try fix icon issus
+
+# [1.0.2] 2026-09-13
+### added
+- versionControlling
+
+### fix
+
+- fix apk version bug

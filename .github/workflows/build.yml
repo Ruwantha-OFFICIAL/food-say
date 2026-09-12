@@ -46,6 +46,11 @@ jobs:
           cp ./src/assets/release_key.jks ./android/app
           cp ./src/assets/notification_image.png ./android/app/src/main/res/drawable
 
+
+      - name: Version Update 🔖
+        run: node ./bin/verstion_android.cjs
+
+      
       - name: Setup Java ☕
         uses: actions/setup-java@v6
         with:
@@ -81,10 +86,24 @@ jobs:
       - name: Check Files
         run: ls
 
+      - name: Setup Nodejs
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Get Version 👾
+        id: get_v
+        run: |
+          VERSION=$(node -e "
+            import p from './package.json' with { type: 'json'};
+            console.log(p.version);
+          ")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
       - name: Create Release 🦁
         uses: softprops/action-gh-release@v3
         with:
-          tag_name: 1.0.1
+          tag_name: {{steps.get_v.outputs.version}}
           body_path: ./release.md
           files: release/*
         env:
